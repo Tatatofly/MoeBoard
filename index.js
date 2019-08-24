@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const config = require('./utils/config')
 const postRouter = require('./controllers/posts')
 
+// TODO: Initializing connection to Database
+
 const app = express()
 
 app.use('/api/posts', postRouter)
