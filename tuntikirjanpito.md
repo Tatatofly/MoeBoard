@@ -6,4 +6,5 @@
 | 20.8. | 1    | Sovelluksen suunnittelu |
 |       | 1    | Backendin alkuvalmistelut |
 | 24.8. | 1    | Post objektin tarjoilu ja mongoose |
-| yht   | 3   | | 
+| 9.12. | 2    | MongoDB Atlas, Postausten haku ja testitietokanta (Päivitykset kirjastoihin) |
+| yht   | 5   | | 

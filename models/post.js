@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
 const Post = mongoose.model('Post', {
-  // TODO: Post object content
+  title: String,
+  content: String,
+  date: Date,
+  deleted: Boolean 
 })
 
 module.exports = Post
