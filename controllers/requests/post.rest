@@ -1,0 +1,6 @@
+POST http://localhost:8080/api/post
+content-type: application/json
+
+{
+"title": "Testing posting 2", "content": "Look mom, I'm testing :3"
+}

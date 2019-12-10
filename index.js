@@ -1,15 +1,18 @@
 const http = require('http')
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser');
 
 const config = require('./utils/config')
 const postRouter = require('./controllers/posts')
 
-mongoose.connect(config.mongoUrl, { useNewUrlParser: true })
+mongoose.connect(config.mongoUrl, { useNewUrlParser: true})
 
 const app = express()
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api/posts', postRouter)
+app.use('/api/post', postRouter)
 
 const server = http.createServer(app)
 

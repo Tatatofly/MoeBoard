@@ -1,0 +1,6 @@
+POST http://localhost:8080/api/post/5def520c7a290c440c473d5f
+content-type: application/json
+
+{
+"content": "Look mom, I'm replying :3"
+}
