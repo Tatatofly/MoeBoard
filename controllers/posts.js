@@ -2,8 +2,7 @@ const postRouter = require('express').Router()
 const Post = require('../models/post')
 const Reply = require('../models/reply')
 
-// TODO: Getters for collection of posts with condition matching posts
-// TODO: Post method for posting and deleting a post
+// TODO: Post method for deleting a post and reply
 postRouter.get('/', async (request, response) => {
   const posts = await Post
     .find({})
@@ -29,6 +28,26 @@ postRouter.get('/:id', async (request, response) => {
   try {
     if (post) {
       response.json(post)
+    } else{
+      response.status(404).end()
+    }
+  } catch (exception) {
+    console.log(exception)
+  }
+})
+
+// Get replies of a post
+postRouter.get('/:id/reply', async (request, response) => {
+  const reply = await Reply
+  .find({'post':request.params.id})
+  .catch(error => {
+    console.log(error)
+    response.status(400).send({ error: 'Malformatted id' })
+  })
+
+  try {
+    if (reply) {
+      response.json(reply)
     } else{
       response.status(404).end()
     }
