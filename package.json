@@ -4,9 +4,9 @@
   "description": "MoeBoard backend",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "watch": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "lint": "npx eslint ."
   },
   "repository": {
@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/Tatatofly/MoeBoard#readme",
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "eslint": "^6.7.2",
-    "nodemon": "^1.19.4"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

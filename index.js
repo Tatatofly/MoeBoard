@@ -1,18 +1,6 @@
 const http = require('http')
-const express = require('express')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser');
-
+const app = require('./app')
 const config = require('./utils/config')
-const postRouter = require('./controllers/posts')
-
-mongoose.connect(config.mongoUrl, { useNewUrlParser: true})
-
-const app = express()
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use('/api/post', postRouter)
 
 const server = http.createServer(app)
 
@@ -20,13 +8,3 @@ server.listen(config.port, () => {
   // TODO: Server running
   console.log(`Server running on port ${config.port}`)
 })
-
-server.on('close', () => {
-  // TODO: Close connection to DB
-  mongoose.connection.close()
-})
-
-
-module.exports = {
-  app, server
-}
