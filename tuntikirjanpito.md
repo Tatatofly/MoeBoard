@@ -10,5 +10,5 @@
 | 9.12.  | 2    | MongoDB Atlas, Postausten haku ja testitietokanta (Päivitykset kirjastoihin) |
 | 10.12. | 3    | Posting, Replying & Replies @ DB, Body-parser |
 | 14.12. | 1    | Vastauksien haku postauksen mukaan |
-| 20.1.  | 2    | Testit, index.js vs app.js parantelu. URI dokumentointi |
-| yht    | 11   | | 
+| 20.1.  | 4    | Testit, index.js vs app.js parantelu. URI dokumentointi |
+| yht    | 13   | | 
