@@ -57,17 +57,35 @@ test('There are no Replies', async () => {
 
 test('Reply for first post was successful', async () => {
   const response = await api.get('/api/post')
+
   const testReply = {
     post: response.body[0]._id,
     content: "Look, it works!",
     date: new Date(),
     deleted: false 
   }
+  
   let replyObject = new Reply(testReply)
   await replyObject.save()
   const replyResponse = await api.get('/api/post/reply')
   expect(replyResponse.body[0].content).toBe(testReply.content)
 })
+
+test('First post was marked as deleted', async () => {
+  const response = await api.get('/api/post')
+  await api.delete('/api/post/' + response.body[0]._id)
+  const response2 = await api.get('/api/post')
+  expect(response2.body[0].deleted).toBe(true)
+})
+
+test('First post was deleted', async () => {
+  const response = await api.get('/api/post')
+  const deleteResponse = await api.delete('/api/post/' + response.body[0]._id + '/delete')
+  const response2 = await api.get('/api/post')
+  expect(deleteResponse.status).toBe(204)
+  expect(response2.body.length).toBe(initialPosts.length-1)
+})
+
 
 afterAll(() => {
   mongoose.connection.close()

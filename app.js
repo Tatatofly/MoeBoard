@@ -8,10 +8,10 @@ const app = express()
 
 mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(() => {
-    console.log('connected to MongoDB')
+    console.log('Connected to MongoDB')
   })
   .catch((error) => {
-    console.log('error connection to MongoDB:', error.message)
+    console.log('Error connection to MongoDB: ', error.message)
   })
 
 app.use(express.static('build'))
@@ -22,7 +22,6 @@ app.use('/api/post', postRouter)
 
 
 app.on('close', () => {
-    // TODO: Close connection to DB
     mongoose.connection.close()
 })
   

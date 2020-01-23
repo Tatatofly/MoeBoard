@@ -36,6 +36,25 @@ postRouter.get('/:id', async (request, response) => {
   }
 })
 
+// Get single reply with id
+postRouter.get('/reply/:id', async (request, response) => {
+  const reply = await Reply.findById(request.params.id)
+    .catch(error => {
+      console.log(error)
+      response.status(400).send({ error: 'Malformatted id' })
+    })
+
+  try {
+    if (reply) {
+      response.json(reply)
+    } else{
+      response.status(404).end()
+    }
+  } catch (exception) {
+    console.log(exception)
+  }
+})
+
 // Get replies of a post
 postRouter.get('/:id/reply', async (request, response) => {
   const reply = await Reply
@@ -110,6 +129,60 @@ postRouter.post('/:id', async (request, response) => {
   } catch (exception) {
     console.log(exception)
   }
+})
+
+// Mark post as deleted
+postRouter.delete('/:id', (request, response, next) => {
+  const body = request.body
+
+  const postObj = {
+    title: body.title,
+    content: body.content,
+    date: body.date,
+    deleted: true 
+  }
+
+  Post.findByIdAndUpdate(request.params.id, postObj)
+    .then(deletedPost => {
+      response.json(deletedPost.toJSON())
+    })
+    .catch(error => next(error))
+})
+
+// Delete post
+postRouter.delete('/:id/delete', (request, response, next) => {
+  Post.findByIdAndRemove(request.params.id)
+    .then(() => {
+      response.status(204).end()
+    })
+    .catch(error => next(error))
+})
+
+// Mark reply as deleted
+postRouter.delete('/reply/:id', (request, response, next) => {
+  const body = request.body
+
+  const replyObj = {
+    post: body.post,
+    content: body.content,
+    date: body.date,
+    deleted: true 
+  }
+
+  Reply.findByIdAndUpdate(request.params.id, replyObj)
+    .then(deleteReply => {
+      response.json(deleteReply.toJSON())
+    })
+    .catch(error => next(error))
+})
+
+// Delete reply
+postRouter.delete('/reply/:id/delete', (request, response, next) => {
+  Reply.findByIdAndRemove(request.params.id)
+    .then(() => {
+      response.status(204).end()
+    })
+    .catch(error => next(error))
 })
 
 module.exports = postRouter
