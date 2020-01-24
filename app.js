@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const postRouter = require('./controllers/posts')
 const config = require('./utils/config')
 
@@ -17,6 +18,7 @@ mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: t
 app.use(express.static('build'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 app.use('/api/post', postRouter)
 

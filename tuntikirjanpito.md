@@ -12,4 +12,5 @@
 | 14.12. | 1    | Vastauksien haku postauksen mukaan |
 | 20.1.  | 4    | Testit, index.js vs app.js parantelu. URI dokumentointi |
 | 23.1.  | 2    | Postauksen ja vastauksen poisto, sekä testit |
-| yht    | 15   | | 
+| 24.1.  | 2    | Frontend alustus ja postauksen hakeminen |
+| yht    | 17   | | 
