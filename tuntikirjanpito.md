@@ -13,4 +13,5 @@
 | 20.1.  | 4    | Testit, index.js vs app.js parantelu. URI dokumentointi |
 | 23.1.  | 2    | Postauksen ja vastauksen poisto, sekä testit |
 | 24.1.  | 2    | Frontend alustus ja postauksen hakeminen |
-| yht    | 17   | | 
+| 25.1.  | 3    | Frontend postauksien haku ja käsittely |
+| yht    | 20   | | 

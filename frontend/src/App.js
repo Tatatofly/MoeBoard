@@ -1,5 +1,6 @@
-import React from 'react';
-import Post from './components/Post'
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import ListPosts from './components/ListPosts'
 import postGetterService from './services/postGetter'
 
 
@@ -7,14 +8,18 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      content: 'Loading...'
+      posts: []
     }
   }
   
   componentDidMount() {
-    postGetterService.getFirst().then(post =>
-      this.setState({ 
-        content: post.content
+    postGetterService.getAll().then(post =>
+      this.setState(state => {
+        const posts = [...state.posts]
+        posts.push(post)
+        return {
+          posts
+        }
       })
     )
   }
@@ -22,15 +27,15 @@ class App extends React.Component {
   render() {
     const Posts = () => (
       <div>
-        <Post content={this.state.content} />
+        <ListPosts postArray={this.state.posts} />
       </div>
     )
 
     return (
-      <div>
-        <Posts/>
+      <div className='container'>
+        <Posts />
       </div>
-    );
-    }
+    )
+  }
 }
 export default App

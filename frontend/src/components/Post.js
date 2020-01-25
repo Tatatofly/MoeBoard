@@ -3,10 +3,12 @@ import React from 'react'
 class Post extends React.Component {
     
     render() {
-      const { content } = this.props
+      const { title, content, date } = this.props
       return (
-        <div>
-          {content}
+        <div className='container singlePost'>
+          <h4>{title}</h4>
+          <p><strong>{date}</strong> - {content}</p>
+          <br />
         </div>
       )
     }
