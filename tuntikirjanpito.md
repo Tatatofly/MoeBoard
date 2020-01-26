@@ -4,8 +4,7 @@
 | Päivä  | Aika | Tehtävät  |
 | :----: |:-----| :-----|
 | 17.8.  | 0    | Repositorio ja alkuvalmistelut |
-| 20.8.  | 1    | Sovelluksen suunnittelu |
-|        | 1    | Backendin alkuvalmistelut |
+| 20.8.  | 2    | Sovelluksen suunnittelu. Backendin alkuvalmistelut |
 | 24.8.  | 1    | Post objektin tarjoilu ja mongoose |
 | 9.12.  | 2    | MongoDB Atlas, Postausten haku ja testitietokanta (Päivitykset kirjastoihin) |
 | 10.12. | 3    | Posting, Replying & Replies @ DB, Body-parser |
@@ -14,4 +13,5 @@
 | 23.1.  | 2    | Postauksen ja vastauksen poisto, sekä testit |
 | 24.1.  | 2    | Frontend alustus ja postauksen hakeminen |
 | 25.1.  | 3    | Frontend postauksien haku ja käsittely |
-| yht    | 20   | | 
+| 26.1.  | 2    | Frontend postauslomake ja sen käsittely |
+| yht    | 22   | | 
