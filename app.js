@@ -16,15 +16,15 @@ mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: t
   })
 
 app.use(express.static('build'))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 app.use('/api/post', postRouter)
 
 
 app.on('close', () => {
-    mongoose.connection.close()
+  mongoose.connection.close()
 })
   
 

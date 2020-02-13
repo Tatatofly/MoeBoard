@@ -6,19 +6,23 @@ const Reply = require('../models/reply')
 
 const api = supertest(app)
 
+/* eslint-disable */
+
 // Alustettavat postaukset testeihin
 const initialPosts = [
   {
     title: '1st Post',
     content: 'Look mom without frontend look mom look :3',
     date: new Date(), 
-    deleted: false
+    deleted: false,
+    replies: []
   },
   {
     title: '2nd Post',
     content: 'Still testing',
     date: new Date(), 
-    deleted: false
+    deleted: false,
+    replies: []
   },
 ]
 

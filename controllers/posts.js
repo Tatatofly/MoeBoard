@@ -58,11 +58,11 @@ postRouter.get('/reply/:id', async (request, response) => {
 // Get replies of a post
 postRouter.get('/:id/reply', async (request, response) => {
   const reply = await Reply
-  .find({'post':request.params.id})
-  .catch(error => {
-    console.log(error)
-    response.status(400).send({ error: 'Malformatted id' })
-  })
+    .find({'post':request.params.id})
+    .catch(error => {
+      console.log(error)
+      response.status(400).send({ error: 'Malformatted id' })
+    })
 
   try {
     if (reply) {
@@ -85,23 +85,23 @@ postRouter.post('/', async (request, response) => {
       return response.status(400).json({ error: 'Title or content is missing'})
     }
 
-    const post = new Post({ title: title, content: content, date: new Date(), deleted: false} )
+    const post = new Post({ title: title, content: content, date: new Date(), deleted: false, replies: []} )
     const result = await post.save()
 
     response.status(201).json(result)
   } catch (exception) {
-      console.log(exception)
-      response.status(500).json({ error: 'Something went wrong...' })
+    console.log(exception)
+    response.status(500).json({ error: 'Something went wrong...' })
   }
 })
 
 // Post reply to a post
 postRouter.post('/:id', async (request, response) => {
   const post = await Post.findById(request.params.id)
-  .catch(error => {
-    console.log(error)
-    response.status(400).send({ error: 'Malformatted id' })
-  })
+    .catch(error => {
+      console.log(error)
+      response.status(400).send({ error: 'Malformatted id' })
+    })
 
   try {
     if (post) {
@@ -116,11 +116,14 @@ postRouter.post('/:id', async (request, response) => {
     
         const reply = new Reply({ post: request.params.id, content: content, date: new Date(), deleted: false } )
         const result = await reply.save()
+
+        // Add new reply to Posts list of replies
+        await Post.findByIdAndUpdate(request.params.id, {$push: {replies: [reply]} })
     
         response.status(201).json(result)
       } catch (exception) {
-          console.log(exception)
-          response.status(500).json({ error: 'Something went wrong...' })
+        console.log(exception)
+        response.status(500).json({ error: 'Something went wrong...' })
       }
 
     } else{
