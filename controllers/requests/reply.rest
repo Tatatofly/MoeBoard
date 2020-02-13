@@ -2,5 +2,5 @@ POST http://localhost:8080/api/post/5e45320b8b8f4f159c2d3f70
 content-type: application/json
 
 {
-"content": "Testaan toimiiko vastaaminen vuoden ensimmäiseen testiin joka vielä löytyy tietokannasta :3"
+"content": "Toinen vastaus pitäisi kans näkyä :think:"
 }

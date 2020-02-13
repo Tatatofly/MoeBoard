@@ -9,7 +9,7 @@ class ListPosts extends React.Component {
         const PostObj = ({postArray}) => (
           <div className='posts'>
             {postArray.map(post => (
-              <Post key={post._id} content={post.content} title={post.title} date={post.date} />
+              <Post key={post._id} post={post}/>
             ))}
           </div>
         )

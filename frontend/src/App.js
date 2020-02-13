@@ -17,8 +17,7 @@ class App extends React.Component {
   componentDidMount() {
     postGetterService.getAll().then(post =>
       this.setState(state => {
-        const posts = [...state.posts]
-        posts.push(post)
+        const posts = [post]
         return {
           posts
         }
@@ -31,8 +30,7 @@ class App extends React.Component {
       .then(this.setState({posts: []}))
       .then(postGetterService.getAll().then(post =>
         this.setState(state => {
-          const posts = [...state.posts]
-          posts.push(post)
+          const posts = [post]
           return {
             posts
           }
