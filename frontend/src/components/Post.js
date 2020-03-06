@@ -11,7 +11,7 @@ constructor(props) {
   }
   
   componentDidMount() {
-    replyGetterService.getAll().then(reply =>
+    replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
       this.setState(state => {
         const replies = reply
         return {

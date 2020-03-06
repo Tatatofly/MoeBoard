@@ -5,6 +5,7 @@ const Post = mongoose.model('Post', {
   content: String,
   date: Date,
   deleted: Boolean,
+  lastBump: Date,
   replies: [mongoose.Schema.Types.ObjectId]
 })
 

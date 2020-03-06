@@ -2,11 +2,10 @@ const postRouter = require('express').Router()
 const Post = require('../models/post')
 const Reply = require('../models/reply')
 
-// TODO: Post method for deleting a post and reply
 postRouter.get('/', async (request, response) => {
   const posts = await Post
     .find({})
-
+    .sort({lastBump: -1})
   response.json(posts)
 })
 
@@ -85,7 +84,7 @@ postRouter.post('/', async (request, response) => {
       return response.status(400).json({ error: 'Title or content is missing'})
     }
 
-    const post = new Post({ title: title, content: content, date: new Date(), deleted: false, replies: []} )
+    const post = new Post({ title: title, content: content, date: new Date(), deleted: false, lastBump: new Date(), replies: []} )
     const result = await post.save()
 
     response.status(201).json(result)
@@ -118,7 +117,7 @@ postRouter.post('/:id', async (request, response) => {
         const result = await reply.save()
 
         // Add new reply to Posts list of replies
-        await Post.findByIdAndUpdate(request.params.id, {$push: {replies: [reply]} })
+        await Post.findByIdAndUpdate(request.params.id, {lastBump: new Date(),$push: { replies: [reply]} })
     
         response.status(201).json(result)
       } catch (exception) {

@@ -15,4 +15,5 @@
 | 25.1.  | 3    | Frontend postauksien haku ja käsittely |
 | 26.1.  | 2    | Frontend postauslomake ja sen käsittely |
 | 13.2.  | 3    | Vastaus id:t postaus modelissa, vastauksien näyttäminen |
-| yht    | 25   | | 
+| 7.3.   | 2    | Postauksen järjestys ja vastaus bugin korjaaminen |
+| yht    | 27   | | 

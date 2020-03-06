@@ -1,6 +1,6 @@
-POST http://localhost:8080/api/post/5e45320b8b8f4f159c2d3f70
+POST http://localhost:8080/api/post/5e62dadafc53d20c6ceafb83
 content-type: application/json
 
 {
-"content": "Toinen vastaus pitäisi kans näkyä :think:"
+"content": "Nyt löyty joku ihme bugi"
 }
