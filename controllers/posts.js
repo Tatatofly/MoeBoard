@@ -4,14 +4,14 @@ const Reply = require('../models/reply')
 
 postRouter.get('/', async (request, response) => {
   const posts = await Post
-    .find({})
+    .find({'deleted': false})
     .sort({lastBump: -1})
   response.json(posts)
 })
 
 postRouter.get('/reply', async (request, response) => {
   const reply = await Reply
-    .find({})
+    .find({'deleted': false})
 
   response.json(reply)
 })
@@ -57,7 +57,7 @@ postRouter.get('/reply/:id', async (request, response) => {
 // Get replies of a post
 postRouter.get('/:id/reply', async (request, response) => {
   const reply = await Reply
-    .find({'post':request.params.id})
+    .find({'post':request.params.id, 'deleted': false})
     .catch(error => {
       console.log(error)
       response.status(400).send({ error: 'Malformatted id' })

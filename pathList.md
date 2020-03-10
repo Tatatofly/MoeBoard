@@ -3,10 +3,10 @@
 
 | URI  | Metodi | Rajoitettu  | Sisältö |
 | :---- | :-----| :-----: | :-----|
-| /api/post  | GET | - | Hakee kaikki postaukset |
+| /api/post  | GET | - | Hakee kaikki postaukset (Paitsi jos deleted: true)|
 | /api/post/:id  | GET | - | Hakee IDn mukaisen postauksen |
-| /api/post/reply  | GET | - | Hakee kaikki vastaukset |
-| /api/post/:id/reply  | GET | - | Hakee postauksen kaikki vastaukset |
+| /api/post/reply  | GET | - | Hakee kaikki vastaukset (Paitsi jos deleted: true) |
+| /api/post/:id/reply  | GET | - | Hakee postauksen kaikki vastaukset (Paitsi deleted: true) |
 | /api/post/reply/:id  | GET | - | Hakee IDn mukaisen vastauksen |
 | /api/post  | POST | - | Lisää uuden postauksen |
 | /api/post/:id  | POST | - | Lisää uuden vastauksen postaukseen |

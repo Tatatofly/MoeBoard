@@ -16,4 +16,5 @@
 | 26.1.  | 2    | Frontend postauslomake ja sen käsittely |
 | 13.2.  | 3    | Vastaus id:t postaus modelissa, vastauksien näyttäminen |
 | 7.3.   | 2    | Postauksen järjestys ja vastaus bugin korjaaminen |
-| yht    | 27   | | 
+| 10.3.  | 1    | Postauksien ja vastauksien palautus deleted -statuksen mukaan |
+| yht    | 28   | | 
