@@ -25,6 +25,13 @@ constructor(props) {
     render() {
       const { post } = this.props
       const replyArray = post.replies
+      const PostImage = ({image}) => {
+        if(!image) {
+          return null
+        }
+        // TODO: Link backend better with frontend, no static like this
+        return(<img src={'http://localhost:8080/images/' + image} alt='Post' className='img-thumbnail' />)
+      }
       if(replyArray.length > 0) {
         const ReplyObj = ({replies}) => (
           <div className='posts'>
@@ -47,7 +54,10 @@ constructor(props) {
         <div className='container singlePost'>
           <h4>{post.title}</h4>
           <p><strong>{dateFormat.postDate(post.date)}</strong></p>
-          <p>{post.content}</p>
+          <div className='row postRowAntiMargin'>
+            <PostImage image={post.image} />
+            <p className='postText' >{post.content}</p>
+          </div>
           <i>Ei vastauksia</i>
           <br />
         </div>

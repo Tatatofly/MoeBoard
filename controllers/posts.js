@@ -1,6 +1,32 @@
 const postRouter = require('express').Router()
+const multer = require('multer')
 const Post = require('../models/post')
 const Reply = require('../models/reply')
+
+// Multer settings
+const dir = './images/'
+
+const storage = multer.diskStorage({
+  destination: (request, file, cb) => {
+      cb(null, dir);
+  },
+  filename: (request, file, cb) => {
+      const fileName = file.originalname.toLowerCase().split(' ').join('-');
+      cb(null, fileName)
+  }
+});
+
+var upload = multer({
+  storage: storage,
+  fileFilter: (request, file, cb) => {
+      if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+          cb(null, true);
+      } else {
+          cb(null, false);
+          return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+      }
+  }
+})
 
 postRouter.get('/', async (request, response) => {
   const posts = await Post
@@ -75,19 +101,25 @@ postRouter.get('/:id/reply', async (request, response) => {
 })
 
 // Post single post
-postRouter.post('/', async (request, response) => {
-  const { title, content } = request.body
-
+postRouter.post('/', upload.single('postFile'), async (request, response) => {
   try {
+    const { title, content } = request.body
 
     if (title === undefined ||  content === undefined) {
       return response.status(400).json({ error: 'Title or content is missing'})
     }
 
-    const post = new Post({ title: title, content: content, date: new Date(), deleted: false, lastBump: new Date(), replies: []} )
-    const result = await post.save()
-
-    response.status(201).json(result)
+    console.log(request.file)
+    if(!request.file) {
+      const post = new Post({ title: title, content: content, date: new Date(), deleted: false, lastBump: new Date(), replies: []} )
+      const result = await post.save()
+      response.status(201).json(result)
+    } else {
+      // TODO: file handling security, limits, errors || SECURITY NOT SAFE AT ALL
+      const post = new Post({ title: title, content: content, image: request.file.filename, date: new Date(), deleted: false, lastBump: new Date(), replies: []} )
+      const result = await post.save()
+      response.status(201).json(result)
+    }
   } catch (exception) {
     console.log(exception)
     response.status(500).json({ error: 'Something went wrong...' })

@@ -16,6 +16,7 @@ mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: t
   })
 
 app.use(express.static('build'))
+app.use('/images', express.static('images'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())

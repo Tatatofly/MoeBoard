@@ -10,3 +10,22 @@
   padding-bottom: 2px;
   background-color: #f8f9fa;
 }
+
+.postRowAntiMargin {
+  margin-left: 0px!important;
+  margin-right: 0px!important;
+  padding-bottom: 25px;
+}
+
+.postText {
+  margin-left: 10px;
+}
+
+/* Posting form */
+.inputTitle {
+  margin-bottom: 5px;
+}
+
+.inputFile {
+  margin-bottom: 5px;
+}
