@@ -30,7 +30,7 @@ constructor(props) {
           return null
         }
         // TODO: Link backend better with frontend, no static like this
-        return(<img src={'http://localhost:8080/images/' + image} alt='Post' className='img-thumbnail' />)
+        return(<div className='col-12 col-sm-3 col-md-3'><img src={'http://localhost:8080/images/' + image} alt='Post' className='img-thumbnail' /></div>)
       }
       if(replyArray.length > 0) {
         const ReplyObj = ({replies}) => (
@@ -44,7 +44,10 @@ constructor(props) {
         <div className='container singlePost'>
           <h4>{post.title}</h4>
           <p><strong>{dateFormat.postDate(post.date)}</strong></p>
-          <p>{post.content}</p>
+          <div className='row postRowAntiMargin'>
+            <PostImage image={post.image} />
+            <p className='postText col-12 col-sm-8 col-md-8' >{post.content}</p>
+          </div>
           <ReplyObj replies={this.state.replies} />
           <br />
         </div>
@@ -56,7 +59,7 @@ constructor(props) {
           <p><strong>{dateFormat.postDate(post.date)}</strong></p>
           <div className='row postRowAntiMargin'>
             <PostImage image={post.image} />
-            <p className='postText' >{post.content}</p>
+            <p className='postText col-12 col-sm-8 col-md-8' >{post.content}</p>
           </div>
           <i>Ei vastauksia</i>
           <br />
