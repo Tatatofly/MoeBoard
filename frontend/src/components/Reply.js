@@ -1,4 +1,5 @@
 import React from 'react'
+import dateFormat from '../utils/dateFormat'
 
 class Reply extends React.Component {
     
@@ -6,7 +7,8 @@ class Reply extends React.Component {
       const { reply } = this.props
       return (
         <div className='container singleReply'>
-          <p><strong>{reply.date}</strong> - {reply.content}</p>
+          <p><strong>{dateFormat.postDate(reply.date)}</strong></p>
+          <p>{reply.content}</p>
         </div>
       )
     }

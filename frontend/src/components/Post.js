@@ -1,5 +1,6 @@
 import React from 'react'
 import replyGetterService from '../services/replyGetter'
+import dateFormat from '../utils/dateFormat'
 import Reply from './Reply'
 
 class Post extends React.Component {
@@ -35,7 +36,8 @@ constructor(props) {
       return (
         <div className='container singlePost'>
           <h4>{post.title}</h4>
-          <p><strong>{post.date}</strong> - {post.content}</p>
+          <p><strong>{dateFormat.postDate(post.date)}</strong></p>
+          <p>{post.content}</p>
           <ReplyObj replies={this.state.replies} />
           <br />
         </div>
@@ -44,7 +46,8 @@ constructor(props) {
       return (
         <div className='container singlePost'>
           <h4>{post.title}</h4>
-          <p><strong>{post.date}</strong> - {post.content}</p>
+          <p><strong>{dateFormat.postDate(post.date)}</strong></p>
+          <p>{post.content}</p>
           <i>Ei vastauksia</i>
           <br />
         </div>
