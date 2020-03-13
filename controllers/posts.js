@@ -109,7 +109,6 @@ postRouter.post('/', upload.single('postFile'), async (request, response) => {
       return response.status(400).json({ error: 'Title or content is missing'})
     }
 
-    console.log(request.file)
     if(!request.file) {
       const post = new Post({ title: title, content: content, date: new Date(), deleted: false, lastBump: new Date(), replies: []} )
       const result = await post.save()
@@ -127,7 +126,7 @@ postRouter.post('/', upload.single('postFile'), async (request, response) => {
 })
 
 // Post reply to a post
-postRouter.post('/:id', async (request, response) => {
+postRouter.post('/:id', upload.single('postFile'), async (request, response) => {
   const post = await Post.findById(request.params.id)
     .catch(error => {
       console.log(error)
@@ -144,14 +143,23 @@ postRouter.post('/:id', async (request, response) => {
         if (content === undefined) {
           return response.status(400).json({ error: 'Content is missing'})
         }
-    
-        const reply = new Reply({ post: request.params.id, content: content, date: new Date(), deleted: false } )
-        const result = await reply.save()
 
-        // Add new reply to Posts list of replies
-        await Post.findByIdAndUpdate(request.params.id, {lastBump: new Date(),$push: { replies: [reply]} })
+        if(!request.file) {
+          const reply = new Reply({ post: request.params.id, content: content, date: new Date(), deleted: false } )
+          const result = await reply.save()
+          // Add new reply to Posts list of replies
+          await Post.findByIdAndUpdate(request.params.id, {lastBump: new Date(),$push: { replies: [reply]} })
     
-        response.status(201).json(result)
+          response.status(201).json(result)
+        } else {
+          // TODO: file handling security, limits, errors || SECURITY NOT SAFE AT ALL
+          const reply = new Reply({ post: request.params.id, content: content, image: request.file.filename, date: new Date(), deleted: false } )
+          const result = await reply.save()
+          // Add new reply to Posts list of replies
+          await Post.findByIdAndUpdate(request.params.id, {lastBump: new Date(),$push: { replies: [reply]} })
+    
+          response.status(201).json(result)
+        }
       } catch (exception) {
         console.log(exception)
         response.status(500).json({ error: 'Something went wrong...' })

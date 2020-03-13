@@ -2,25 +2,34 @@ import React from 'react'
 import replyGetterService from '../services/replyGetter'
 import dateFormat from '../utils/dateFormat'
 import Reply from './Reply'
+import { Link } from 'react-router-dom'
 
 class Post extends React.Component {
 constructor(props) {
     super(props)
+    this._isMounted = false
     this.state = {
       replies: []
     }
   }
   
   componentDidMount() {
-    replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
-      this.setState(state => {
-        const replies = reply
-        return {
-          replies
-        }
-      })
-    )
+    this._isMounted = true
+    if (this._isMounted) {
+      replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
+        this.setState(state => {
+          const replies = reply
+          return {
+            replies
+          }
+        })
+      )
+    }
   }
+
+  componentWillUnmount() {
+    this._isMounted = false
+ }
     
     render() {
       const { post } = this.props
@@ -42,7 +51,9 @@ constructor(props) {
         )
       return (
         <div className='container singlePost'>
-          <h4>{post.title}</h4>
+          <Link to={`/p/${post._id}`} className='link-nodecor'>
+            <h4>{post.title}</h4>
+          </Link>
           <p><strong>{dateFormat.postDate(post.date)}</strong></p>
           <div className='row postRowAntiMargin'>
             <PostImage image={post.image} />
@@ -55,7 +66,9 @@ constructor(props) {
       }
       return (
         <div className='container singlePost'>
-          <h4>{post.title}</h4>
+          <Link to={`/p/${post._id}`} className='link-nodecor'>
+            <h4>{post.title}</h4>
+          </Link>
           <p><strong>{dateFormat.postDate(post.date)}</strong></p>
           <div className='row postRowAntiMargin'>
             <PostImage image={post.image} />

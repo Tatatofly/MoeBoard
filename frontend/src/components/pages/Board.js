@@ -7,12 +7,14 @@ import newPostService from '../../services/newPost'
 class Board extends React.Component {
     constructor(props) {
       super(props)
+      this._isMounted = false
       this.state = {
         posts: []
       }
     }
     
     componentDidMount() {
+      this._isMounted = true
       postGetterService.getAll().then(post =>
         this.setState(state => {
           const posts = [post]
@@ -22,6 +24,10 @@ class Board extends React.Component {
         })
       )
     }
+
+    componentWillUnmount() {
+      this._isMounted = false
+   }
   
     newPost = data => {
       newPostService.postNew(data)
@@ -40,7 +46,6 @@ class Board extends React.Component {
     render() {
       const Posts = () => (
         <div>
-          <h1>MoeBoard</h1>
           <PostForm onSubmit={data => this.newPost(data)}/>
           <hr />
           <ListPosts postArray={this.state.posts} />
@@ -48,7 +53,7 @@ class Board extends React.Component {
       )
   
       return (
-        <div className='container'>
+        <div>
           <Posts />
         </div>
       )
