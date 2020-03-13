@@ -18,4 +18,5 @@
 | 7.3.   | 2    | Postauksen järjestys ja vastaus bugin korjaaminen |
 | 10.3.  | 1    | Postauksien ja vastauksien palautus deleted -statuksen mukaan |
 | 11.3.  | 4    | Päivämäärän parse, Kuvien lataaminen ja näyttö |
-| yht    | 32   | | 
+| 13.3.  | 2    | Postaukselle oma sivu + refactorointia |
+| yht    | 34   | | 
