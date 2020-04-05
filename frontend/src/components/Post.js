@@ -1,7 +1,8 @@
 import React from 'react'
 import replyGetterService from '../services/replyGetter'
 import dateFormat from '../utils/dateFormat'
-import Reply from './Reply'
+import Replies from './Replies'
+import PostImage from './PostImage'
 import { Link } from 'react-router-dom'
 
 class Post extends React.Component {
@@ -15,68 +16,46 @@ constructor(props) {
   
   componentDidMount() {
     this._isMounted = true
-    if (this._isMounted) {
-      replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
-        this.setState(state => {
-          const replies = reply
-          return {
-            replies
-          }
-        })
-      )
-    }
+    replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
+      this.setState(state => {
+        const replies = [reply]
+        return {
+          replies
+        }
+      })
+    )
   }
 
   componentWillUnmount() {
     this._isMounted = false
- }
+ } 
     
     render() {
-      const { post } = this.props
-      const replyArray = post.replies
-      const PostImage = ({image}) => {
-        if(!image) {
-          return null
-        }
-        // TODO: Link backend better with frontend, no static like this
-        return(<div className='col-12 col-sm-3 col-md-3'><img src={'http://localhost:8080/images/' + image} alt='Post' className='img-thumbnail' /></div>)
-      }
-      if(replyArray.length > 0) {
-        const ReplyObj = ({replies}) => (
-          <div className='posts'>
-            {replies.map(reply => (
-              <Reply key={reply._id} reply={reply}/>
-            ))}
+      const { post, limitReplies } = this.props
+      if(this.state.replies.length > 0) {
+        let reps = this.state.replies[0]
+        return (
+          <div className='container singlePost'>
+            <div className='clearfix'>
+              <Link to={`/p/${post._id}`} className='link-nodecor'>
+                <h4 className='float-left'>{post.title}</h4>
+              </Link>
+              <Link to={`/p/${post._id}`} className='link-nodecor'>
+                <h6 className='float-right'>{post._id}</h6>
+              </Link>
+            </div>
+            <p><strong>{dateFormat.postDate(post.date)}</strong></p>
+            <div className='row postRowAntiMargin'>
+              <PostImage image={post.image} />
+              <p className='postText col-12 col-sm-8 col-md-8' >{post.content}</p>
+            </div>
+            <Replies replies={reps} limit={limitReplies} />
+            <br />
           </div>
         )
-      return (
-        <div className='container singlePost'>
-          <Link to={`/p/${post._id}`} className='link-nodecor'>
-            <h4>{post.title}</h4>
-          </Link>
-          <p><strong>{dateFormat.postDate(post.date)}</strong></p>
-          <div className='row postRowAntiMargin'>
-            <PostImage image={post.image} />
-            <p className='postText col-12 col-sm-8 col-md-8' >{post.content}</p>
-          </div>
-          <ReplyObj replies={this.state.replies} />
-          <br />
-        </div>
-      )
       }
-      return (
-        <div className='container singlePost'>
-          <Link to={`/p/${post._id}`} className='link-nodecor'>
-            <h4>{post.title}</h4>
-          </Link>
-          <p><strong>{dateFormat.postDate(post.date)}</strong></p>
-          <div className='row postRowAntiMargin'>
-            <PostImage image={post.image} />
-            <p className='postText col-12 col-sm-8 col-md-8' >{post.content}</p>
-          </div>
-          <i>Ei vastauksia</i>
-          <br />
-        </div>
+      return(
+        <div>Loading...</div>
       )
     }
   }

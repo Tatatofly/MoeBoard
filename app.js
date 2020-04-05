@@ -7,7 +7,7 @@ const config = require('./utils/config')
 
 const app = express()
 
-mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
   .then(() => {
     console.log('Connected to MongoDB')
   })
@@ -16,7 +16,7 @@ mongoose.connect(config.mongoUrl, { useUnifiedTopology: true, useNewUrlParser: t
   })
 
 app.use(express.static('build'))
-app.use('/images', express.static('images'));
+app.use('/images', express.static('images'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())

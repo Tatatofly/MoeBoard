@@ -44,17 +44,11 @@ class Board extends React.Component {
     } 
   
     render() {
-      const Posts = () => (
+      return (
         <div>
           <PostForm onSubmit={data => this.newPost(data)}/>
           <hr />
           <ListPosts postArray={this.state.posts} />
-        </div>
-      )
-  
-      return (
-        <div>
-          <Posts />
         </div>
       )
     }

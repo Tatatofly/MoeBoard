@@ -4,18 +4,13 @@ import Post from './Post'
 class ListPosts extends React.Component {
     
     render() {
-      const postArray = this.props.postArray
+      const { postArray } = this.props
       if(postArray.length > 0) {
-        const PostObj = ({postArray}) => (
-          <div className='posts'>
-            {postArray.map(post => (
-              <Post key={post._id} post={post}/>
-            ))}
-          </div>
-        )
         return (
-          <div>
-            <PostObj postArray={postArray[0]} />
+          <div className='posts'>
+            {postArray[0].map(post => (
+              <Post key={post._id} post={post} limitReplies={true} />
+            ))}
           </div>
         )
       }

@@ -8,9 +8,7 @@ class Thread extends React.Component {
   constructor(props) {
     super(props)
     this._isMounted = false
-    this.state = {
-      replies: []
-    }
+    this.state = {}
   }
     
   componentDidMount() {
@@ -38,18 +36,13 @@ class Thread extends React.Component {
   }
   
   render() {
-    const PostObj = () => (
+    return (
       <div>
         <ReplyForm onSubmit={data => this.newReply(data)}/>
         <hr />
         <div className='posts'>
-          <Post post={this.state} />
+          <Post key={this.state._id} post={this.state} limitReplies={false} />
         </div>
-      </div>
-    )
-    return (
-      <div>
-        <PostObj />
       </div>
     )
   }
