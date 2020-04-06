@@ -2,6 +2,7 @@ import React from 'react'
 import replyGetterService from '../services/replyGetter'
 import dateFormat from '../utils/dateFormat'
 import Replies from './Replies'
+import DeleteButton from './DeleteButton'
 import PostImage from './PostImage'
 import { Link } from 'react-router-dom'
 
@@ -43,6 +44,7 @@ constructor(props) {
               <Link to={`/p/${post._id}`} className='link-nodecor'>
                 <h6 className='float-right'>{post._id}</h6>
               </Link>
+              <DeleteButton postPage={limitReplies} id={post._id} isReply={false} />
             </div>
             <p><strong>{dateFormat.postDate(post.date)}</strong></p>
             <div className='row postRowAntiMargin'>

@@ -23,8 +23,8 @@ constructor(props) {
 			
 		return (
 			<div className='col-12 col-sm-2 col-md-2'>
-                <img src={config.backendURL + '/images/' + image} alt='Reply' className='img-thumbnail' />
-            </div>
+        <img src={config.backendURL + '/images/' + image} alt='Reply' className='img-thumbnail' />
+      </div>
       )
     }
   }

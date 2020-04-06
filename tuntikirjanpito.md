@@ -20,6 +20,7 @@
 | 11.3.  | 4    | Päivämäärän parse, Kuvien lataaminen ja näyttö |
 | 13.3.  | 3    | Postaukselle oma sivu + refactorointia, Vastaulomake ja näkymä |
 | 27.3.  | 1    | Riippuvuuksien päivitystä ja päivitysten korjailua |
-| 29.3.  | 1	| HTTPS tuki demoon (.htaccess mod_rewrite) |
+| 29.3.  | 1	  | HTTPS tuki demoon (.htaccess mod_rewrite) |
 | 5.4.   | 4    | Palautteen korjaukset, Etusivun vastausten rajoitus, ID linkit |
-| yht    | 41   | | 
+| 6.4.   | 3    | Postausten ja vastausten poisto ja bugien korjaus |
+| yht    | 44   | | 

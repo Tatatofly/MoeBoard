@@ -170,15 +170,10 @@ postRouter.post('/:id', upload.single('postFile'), async (request, response) => 
 
 // Mark post as deleted
 postRouter.delete('/:id', (request, response, next) => {
-  const body = request.body
-
   const postObj = {
-    title: body.title,
-    content: body.content,
-    date: body.date,
     deleted: true 
   }
-
+  
   Post.findByIdAndUpdate(request.params.id, postObj)
     .then(deletedPost => {
       response.json(deletedPost.toJSON())
@@ -197,12 +192,7 @@ postRouter.delete('/:id/delete', (request, response, next) => {
 
 // Mark reply as deleted
 postRouter.delete('/reply/:id', (request, response, next) => {
-  const body = request.body
-
   const replyObj = {
-    post: body.post,
-    content: body.content,
-    date: body.date,
     deleted: true 
   }
 

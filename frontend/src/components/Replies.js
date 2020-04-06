@@ -23,7 +23,7 @@ constructor(props) {
             <div>
               <small><i>{replies.length} vastausta</i></small>
                 {replies.slice(replies.length-3, replies.length).map(reply => (
-                  <Reply key={reply._id} reply={reply}/>
+                  <Reply key={reply._id} reply={reply} limit={limit} />
                 ))}
             </div>
           )
@@ -32,7 +32,7 @@ constructor(props) {
           <div>
             <small><i>{replies.length} vastausta</i></small>
               {replies.map(reply => (
-                <Reply key={reply._id} reply={reply}/>
+                <Reply key={reply._id} reply={reply} limit={limit} />
               ))}
           </div>
         )
