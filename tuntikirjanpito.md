@@ -23,4 +23,5 @@
 | 29.3.  | 1	  | HTTPS tuki demoon (.htaccess mod_rewrite) |
 | 5.4.   | 4    | Palautteen korjaukset, Etusivun vastausten rajoitus, ID linkit |
 | 6.4.   | 3    | Postausten ja vastausten poisto ja bugien korjaus |
-| yht    | 44   | | 
+| 8.4.   | 3    | Kuvien laajenus klikatessa, tiedostonimi, bugien korjausta |
+| yht    | 47   | | 

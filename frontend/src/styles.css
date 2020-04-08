@@ -23,7 +23,11 @@
 }
 
 .postText {
-  margin-left: 10px;
+  margin-left: 0px;
+}
+
+.postFile {
+  margin-bottom: 15px;
 }
 
 /* Posting form */
