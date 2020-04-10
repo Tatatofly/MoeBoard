@@ -14,11 +14,9 @@ class Thread extends React.Component {
   componentDidMount() {
     this._isMounted = true
     const { id } = this.props.match.params
-    if (this._isMounted) {
-      postGetterService.getSingle(id).then(post =>
+    this._isMounted && postGetterService.getSingle(id).then(post =>
         this.setState(post)
       )
-    }
   }
 
   componentWillUnmount() {

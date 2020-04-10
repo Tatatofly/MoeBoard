@@ -8,7 +8,7 @@ constructor(props) {
     this._isMounted = false
     this.imgBig = false
     this.state = {
-      parentClass: 'postFile col-12 col-sm-2 col-md-2'
+      parentClass: 'postFile col-12 col-sm-12 col-md-2'
     }
   }
   
@@ -28,7 +28,7 @@ constructor(props) {
     })
   } else {
     this.setState(() => {
-      return {parentClass: 'postFile col-12 col-sm-2 col-md-2'}
+      return {parentClass: 'postFile col-12 col-sm-12 col-md-2'}
     })
   }
 }

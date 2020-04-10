@@ -15,7 +15,7 @@ class Board extends React.Component {
     
     componentDidMount() {
       this._isMounted = true
-      postGetterService.getAll().then(post =>
+      this._isMounted && postGetterService.getAll().then(post =>
         this.setState(state => {
           const posts = [post]
           return {

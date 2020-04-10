@@ -4,6 +4,7 @@ import dateFormat from '../utils/dateFormat'
 import Replies from './Replies'
 import DeleteButton from './DeleteButton'
 import PostImage from './PostImage'
+import PostContent from './PostContent'
 import { Link } from 'react-router-dom'
 
 class Post extends React.Component {
@@ -17,8 +18,8 @@ constructor(props) {
   
   componentDidMount() {
     this._isMounted = true
-    replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
-      this.setState(state => {
+    this._isMounted && replyGetterService.getAllFromPost(this.props.post._id).then(reply =>
+      this.setState(() => {
         const replies = [reply]
         return {
           replies
@@ -49,7 +50,7 @@ constructor(props) {
             <p><strong>{dateFormat.postDate(post.date)}</strong></p>
             <div className='row postRowAntiMargin'>
               <PostImage image={post.image} />
-              <p className='postText col-12 col-sm-8 col-md-8' >{post.content}</p>
+              <PostContent content={post.content} textClass={'postText col-12 col-sm-12 col-md-8'} />
             </div>
             <Replies replies={reps} limit={limitReplies} />
             <br />

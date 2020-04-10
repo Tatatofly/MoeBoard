@@ -23,7 +23,15 @@
 }
 
 .postText {
-  margin-left: 0px;
+  white-space: pre-line;
+}
+
+.greenText {
+  color: #1bbf2e;
+}
+
+.blueText {
+  color: #1b7dbf;
 }
 
 .postFile {
