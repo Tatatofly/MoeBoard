@@ -25,4 +25,5 @@
 | 6.4.   | 3    | Postausten ja vastausten poisto ja bugien korjaus |
 | 8.4.   | 3    | Kuvien laajenus klikatessa, tiedostonimi, bugien korjausta |
 | 10.4.  | 4    | Postausten tekstin muotoilua, this._isMounted korjauksia |
-| yht    | 51   | | 
+| 12.4.  | 2    | Linkkien muotoilu tekstissä |
+| yht    | 53   | | 
