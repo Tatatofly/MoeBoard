@@ -2,7 +2,7 @@
 React &amp; Node.JS powered imageboard. 
 
 #### Live demo
-[https://moeboard.herokuapp.com/](https://moeboard.herokuapp.com/)
+[http://moeboard.tatu.moe/](http://moeboard.tatu.moe/)
 
 #### Description
 MoeBoard is [imageboard](https://en.wikipedia.org/wiki/Imageboard) styled "forum" where users post content anonymously. 

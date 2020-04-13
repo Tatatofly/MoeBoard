@@ -26,4 +26,5 @@
 | 8.4.   | 3    | Kuvien laajenus klikatessa, tiedostonimi, bugien korjausta |
 | 10.4.  | 4    | Postausten tekstin muotoilua, this._isMounted korjauksia |
 | 12.4.  | 2    | Linkkien muotoilu tekstissä |
-| yht    | 53   | | 
+| 13.4.  | 1    | Päivitetty live sovellus |
+| yht    | 54   | | 
